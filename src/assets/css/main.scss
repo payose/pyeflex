@@ -1,0 +1,87 @@
+$color-dark: #121620;
+$color-light: #161b22;
+$color-yellow: #ffa810;
+$color-grey: #808080;
+
+html{
+  font-size: 16px;
+}
+
+#header{
+  padding: 1em;
+  width: 100vw;
+  position: fixed;
+  box-shadow: 0 4px 10px -5px #191e29;
+
+  .navbar-brand{
+    width: 15%;
+    // border-right: 2px solid #323233;
+
+    img{
+      width: 12vw;
+    }
+
+  }
+
+  form{
+    position: relative;
+
+    input, input:focus{
+      outline: none;
+      background-color: transparent;
+      border: 0px;
+      border-bottom: 2px solid $color-grey;
+      width: 500px;
+      border-radius: 0px;
+      box-shadow: none;
+  
+    }
+  
+    button{
+      top: 0px;
+      right: 10px;
+      border: 0px;
+      outline: none;
+      color: $color-grey;
+      position: absolute;
+      background-color: transparent;
+    }
+
+    // @media only screen and (max-width: 425px) {
+
+    // }
+  }
+
+  .toggle-icon{
+    position: relative;
+
+    button{
+      top: 20px;
+      right: 20px;
+      border: 0px;
+      outline: none;
+      color: $color-grey;
+      background-color: transparent;
+    }
+      
+  }
+
+  #collapse-1{
+    form{
+      position: relative;
+      padding: 3px;
+      background-color: $color-light;
+      border-radius: 3px;
+
+  
+      input, input:focus{
+        border: 0px;
+        width: 80vw;
+        box-shadow: none;
+        color: $color-grey;
+        padding: 0 10px;
+    
+      }
+    }
+  }
+}
