@@ -8,30 +8,32 @@ html{
 }
 
 #header{
-  padding: 1em;
   width: 100vw;
   position: fixed;
   box-shadow: 0 4px 10px -5px #191e29;
 
   .navbar-brand{
     width: 15%;
-    // border-right: 2px solid #323233;
 
     img{
       width: 12vw;
+      margin-bottom: -10px;
+      @media only screen and (max-width: 765px){
+        width: 20vw;
+      }
     }
-
   }
 
   form{
     position: relative;
+    top: auto;
 
     input, input:focus{
       outline: none;
       background-color: transparent;
       border: 0px;
       border-bottom: 2px solid $color-grey;
-      width: 500px;
+      width: 40vw;
       border-radius: 0px;
       box-shadow: none;
   
@@ -46,15 +48,9 @@ html{
       position: absolute;
       background-color: transparent;
     }
-
-    // @media only screen and (max-width: 425px) {
-
-    // }
   }
 
   .toggle-icon{
-    position: relative;
-
     button{
       top: 20px;
       right: 20px;
@@ -63,24 +59,26 @@ html{
       color: $color-grey;
       background-color: transparent;
     }
-      
   }
 
   #collapse-1{
+    position: absolute;
+    top: 80px;
+    width: 100vw;
+    
     form{
-      position: relative;
-      padding: 3px;
-      background-color: $color-light;
+      margin: auto;
+      width: 80vw;
+      background-color: $color-dark;
       border-radius: 3px;
+      box-shadow: 0 4px 10px -5px #191e29;
+      border: 2px solid $color-grey;
 
-  
       input, input:focus{
         border: 0px;
-        width: 80vw;
         box-shadow: none;
         color: $color-grey;
         padding: 0 10px;
-    
       }
     }
   }
