@@ -14,18 +14,13 @@
 
 <script>
 import Cards from './Cards.vue'
-import { mapState, mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     Cards
   },
-
-  /* data () {
-    return {
-      moreItems: []
-    }
-  }, */
 
   methods: {
   },
@@ -35,12 +30,15 @@ export default {
       'movies'
     ]),
 
-    ...mapGetters({
-    })
+    ...mapMutations([
+      'fetchMoreMovies'
+    ])
   },
 
   mounted () {
     this.$store.dispatch('discoverMovies')
+    this.$store.commit('fetchMoreMovies')
+    
   }
 }
 

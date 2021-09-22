@@ -18,11 +18,11 @@ export default new Vuex.Store({
 
     movieTitleSearch: '',
     trendingMoviesList: [],
-    discoverMoviesList: [],
     movies: {
       discoverMoviesList: [],
       searchMovieResults: []
-    }
+    },
+    pageNo: 1
   },
 
   mutations: {
@@ -31,6 +31,27 @@ export default new Vuex.Store({
     },
     discover (state, discoverMoviesList) {
       state.movies.discoverMoviesList.push(...discoverMoviesList)
+    },
+    fetchMoreMovies (state) {
+      window.onscroll = () => {
+        let bottomOfWindow =
+          document.documentElement.scrollTop + window.innerHeight >
+          document.documentElement.offsetHeight
+          // console.log(bottomOfWindow, window.innerHeight, document.documentElement.scrollTop, window.innerHeight+document.documentElement.scrollTop, document.documentElement.offsetHeight)
+        
+         if (bottomOfWindow) {
+          state.pageNo += state.pageNo
+          console.log(state.pageNo)
+          this.dispatch('discoverMovies')
+          console.log('dispatched...')
+          setTimeout(() => {
+          console.log('dispatched...')
+            
+          }, 3000);
+          // bottomOfWindow=false
+           
+        }
+      }
     }
   },
   actions: {
@@ -42,7 +63,7 @@ export default new Vuex.Store({
         })
     },
     discoverMovies ({ commit }) {
-      axios.get('https://api.themoviedb.org/3/discover/movie?api_key=8877d1eb614b8be7d7f8df5f78c5609d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_average.gte=7.0')
+      axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=8877d1eb614b8be7d7f8df5f78c5609d&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${this.state.pageNo}&vote_average.gte=7.0`)
         .then(response => {
           this.discoverMoviesList = response.data.results
           commit('discover', this.discoverMoviesList)
