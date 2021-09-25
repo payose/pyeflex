@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="d-flex justify-content-between">
-      <h2 class="ml-4 mb-5 text-secondary">SEARCH RESULTS</h2>
+      <h2 class="ml-4 mb-5 text-secondary">filter for {{ $route.params.tabName}}</h2>
       <b-icon icon="x-octagon-fill" style="width: 30px; height: 30px; cursor: pointer"
-      class="mr-5 text-secondary svg" @click="exit(state)">
+      class="mr-5 text-secondary svg" @click="back()">
       </b-icon>
     </div>
 
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+// import {useRoute} from 'vue-router'
 import { mapState } from 'vuex'
 import Cards from '@/components/Cards.vue'
 export default {
@@ -27,8 +28,8 @@ export default {
   },
 
   methods: {
-    exit () {
-      this.$store.dispatch('exit')
+    back () {
+      this.$router.push('/')
     }
 
   },
@@ -37,6 +38,10 @@ export default {
     ...mapState([
       'movies'
     ])
+  },
+
+  mounted() {
+    
   }
 
 }

@@ -30,12 +30,22 @@ export default new Vuex.Store({
       state.trendingMoviesList = trendingMoviesList
     },
     discover (state, discoverMoviesList) {
-      state.movies.discoverMoviesList.push(...discoverMoviesList)
+      state.movies.discoverMoviesList = []
+      discoverMoviesList.forEach(discoverMovieList => {
+        if(discoverMovieList.poster_path && discoverMovieList.overview) {
+          state.movies.discoverMoviesList.push(discoverMovieList)
+          }
+      });
+      // state.movies.discoverMoviesList.push(...discoverMoviesList)
     },
     search (state, searchMovieResults) {
-      state.movies.searchMovieResults.push(...searchMovieResults)
-      console.table(state.movies.searchMovieResults)
-
+      state.movies.searchMovieResults = []
+      searchMovieResults.forEach(searchMovieResult => {
+        if(searchMovieResult.poster_path && searchMovieResult.overview) {
+          state.movies.searchMovieResults.push(searchMovieResult)
+          }
+      });
+        
     },
     updateMessage (state, movieTitleSearch) {
       state.movieTitleSearch = movieTitleSearch
@@ -88,16 +98,17 @@ export default new Vuex.Store({
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=8877d1eb614b8be7d7f8df5f78c5609d&language=en-US&query=${this.state.movieTitleSearch}&page=1&include_adult=true`)
         .then(response => {
           this.searchMovieResults = response.data.results
-          // console.table(this.searchMovieResults)
           commit('search', this.searchMovieResults)
         })
+
     },
     searchCategories (context, index) {
-      axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=8877d1eb614b8be7d7f8df5f78c5609d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${this.state.tabNames[index].id}`)
+      axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=8877d1eb614b8be7d7f8df5f78c5609d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${index}`)
         .then(response => {
           this.searchMovieResults = response.data.results
           context.commit('search', this.searchMovieResults)
         })
+
     },
   },
   modules: {

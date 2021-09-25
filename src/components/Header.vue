@@ -20,15 +20,24 @@
       </div>
 
       <b-collapse id="collapse-1" class="mt-2">
-        <form action="">
-          <input type="text">
+        <form @submit.prevent="searchMovies()" action="">
+          <input id="search"
+          v-model="movieTitleSearch"
+          type="text"
+          placeholder="Quick Search..."
+          required
+          >
           <button type="submit" class="d-none"><b-icon icon='search' class="icon "></b-icon></button>
         </form>
       </b-collapse>
 
       <b-collapse id="collapse-2" class="mt-2 d-md-none">
         <b-nav vertical pills>
-          <b-nav-item v-for="(tabName, index) in tabNames" :key="tabName.id" @click="searchCategories(index)">{{tabName.server}}</b-nav-item>
+          <b-nav-item 
+          v-for="tabName in tabNames" 
+          :key="tabName.id" 
+          @click="searchCategories(tabName)">
+          {{tabName.server}}</b-nav-item>
         </b-nav>
       </b-collapse>
 
@@ -59,11 +68,18 @@ export default {
 
   methods: {
     searchMovies () {
+      this.$router.push({ path: `/filter/${this.movieTitleSearch}` })
       this.$store.dispatch('searchMovies')
     },
 
-    searchCategories (index) {
-      this.$store.dispatch('searchCategories', index)
+    // searchCategories (index) {
+    //   this.$store.dispatch('searchCategories', index)
+    // },
+
+    searchCategories (tabName) {
+      this.$router.push({ path: `/filter/${tabName.server}` })
+      // this.$router.push('/filter/'+this.tabName)
+      this.$store.dispatch('searchCategories', tabName.id)
     }
   }
 }

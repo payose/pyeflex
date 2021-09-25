@@ -9,7 +9,7 @@
         <div class="col-md-10">
           <div id="nav">
             <router-link to="/"></router-link>
-            <router-link to="/Filter"></router-link>
+            <router-link to="/Filter/tabName"></router-link>
           </div>
           <router-view/>
         </div>
