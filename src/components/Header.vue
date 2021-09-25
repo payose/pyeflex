@@ -3,8 +3,14 @@
     <div class="container-fluid align-items-end">
       <a class="navbar-brand" href="#"><img src="./../assets/pyeflex.png" alt=""></a>
 
-      <form action="" class="d-none d-md-block">
-        <input type="text" placeholder="Quick Search...">
+      <form @submit.prevent="searchMovies()" action="" class="d-none d-md-block">
+        <input
+          id="search"
+          v-model="movieTitleSearch"
+          type="text"
+          placeholder="Quick Search..."
+          required
+        >
         <button type="submit"><b-icon icon='search' class="icon"></b-icon></button>
       </form>
 
@@ -35,13 +41,27 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'flex-header',
+  
   computed: {
-    ...mapState([
+     ...mapState([
       'tabNames'
-    ])
+    ]),
+
+    movieTitleSearch: {
+      get () {
+        return this.$store.state.movieTitleSearch
+      },
+      set (value) {
+        this.$store.commit('updateMessage', value)
+      }
+    }
   },
 
   methods: {
+    searchMovies () {
+      this.$store.dispatch('searchMovies')
+    },
+
     searchCategories (index) {
       this.$store.dispatch('searchCategories', index)
     }

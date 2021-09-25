@@ -32,6 +32,14 @@ export default new Vuex.Store({
     discover (state, discoverMoviesList) {
       state.movies.discoverMoviesList.push(...discoverMoviesList)
     },
+    search (state, searchMovieResults) {
+      state.movies.searchMovieResults.push(...searchMovieResults)
+      console.table(state.movies.searchMovieResults)
+
+    },
+    updateMessage (state, movieTitleSearch) {
+      state.movieTitleSearch = movieTitleSearch
+    },
     fetchMoreMovies (state) {
       window.onscroll = () => {
         let bottomOfWindow =
@@ -54,6 +62,13 @@ export default new Vuex.Store({
       }
     }
   },
+
+  getters: {
+    getItems (state) {
+      return state.items
+    }
+  },
+
   actions: {
     trendingMovies ({ commit }) {
       axios.get('https://api.themoviedb.org/3/trending/movie/day?api_key=8877d1eb614b8be7d7f8df5f78c5609d')
@@ -63,10 +78,25 @@ export default new Vuex.Store({
         })
     },
     discoverMovies ({ commit }) {
-      axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=8877d1eb614b8be7d7f8df5f78c5609d&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${this.state.pageNo}&vote_average.gte=7.0`)
+      axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=8877d1eb614b8be7d7f8df5f78c5609d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.pageNo}&vote_average.gte=7.0`)
         .then(response => {
           this.discoverMoviesList = response.data.results
           commit('discover', this.discoverMoviesList)
+        })
+    },
+    searchMovies ({ commit }) {
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=8877d1eb614b8be7d7f8df5f78c5609d&language=en-US&query=${this.state.movieTitleSearch}&page=1&include_adult=true`)
+        .then(response => {
+          this.searchMovieResults = response.data.results
+          // console.table(this.searchMovieResults)
+          commit('search', this.searchMovieResults)
+        })
+    },
+    searchCategories (context, index) {
+      axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=8877d1eb614b8be7d7f8df5f78c5609d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${this.state.tabNames[index].id}`)
+        .then(response => {
+          this.searchMovieResults = response.data.results
+          context.commit('search', this.searchMovieResults)
         })
     },
   },

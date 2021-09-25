@@ -7,34 +7,26 @@
           <SideBar/>
         </div>
         <div class="col-md-10">
-          <TrendingMovies
-          />
-
-          <DiscoverMovies
-          />
+          <div id="nav">
+            <router-link to="/"></router-link>
+            <router-link to="/Filter"></router-link>
+          </div>
+          <router-view/>
         </div>
       </div>
     </div>
 
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/> -->
+    
   </div>
 </template>
 
 <script>
 import  Header from '@/components/Header'
 import  SideBar from '@/components/SideBar'
-import  TrendingMovies from '@/components/TrendingMovies'
-import  DiscoverMovies from '@/components/DiscoverMovies'
 export default {
   components: {
     Header,
     SideBar,
-    TrendingMovies,
-    DiscoverMovies
   }
 }
 </script>

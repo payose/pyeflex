@@ -1,17 +1,25 @@
 <template>
   <div class="home">
     <!-- <Header/> -->
+    <TrendingMovies
+    />
+
+    <DiscoverMovies
+    />
+
   </div>
 </template>
 
 <script>
+import  TrendingMovies from '@/components/TrendingMovies'
+import  DiscoverMovies from '@/components/DiscoverMovies'
 // @ is an alias to /src
-// import Header from '@/components/Header.vue'
 
 export default {
   name: 'Home',
   components: {
-    // Header
+    TrendingMovies,
+    DiscoverMovies
   }
 }
 </script>
