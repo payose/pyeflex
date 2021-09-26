@@ -15,13 +15,14 @@ export default new Vuex.Store({
       { server: 'Comic', id: 35 },
       { server: 'Romance', id: 10749 }
     ],
-
-    movieTitleSearch: '',
-    trendingMoviesList: [],
     movies: {
       discoverMoviesList: [],
       searchMovieResults: []
     },
+    movieTitleSearch: '',
+    trendingMoviesList: [],
+    clickedMovie: [],
+    trailerId: null,
     pageNo: 1
   },
 
@@ -30,7 +31,6 @@ export default new Vuex.Store({
       state.trendingMoviesList = trendingMoviesList
     },
     discover (state, discoverMoviesList) {
-      state.movies.discoverMoviesList = []
       discoverMoviesList.forEach(discoverMovieList => {
         if(discoverMovieList.poster_path && discoverMovieList.overview) {
           state.movies.discoverMoviesList.push(discoverMovieList)
@@ -50,12 +50,14 @@ export default new Vuex.Store({
     updateMessage (state, movieTitleSearch) {
       state.movieTitleSearch = movieTitleSearch
     },
+    getMovie (state, trailerId) {
+      state.trailerId = trailerId
+    },
     fetchMoreMovies (state) {
       window.onscroll = () => {
         let bottomOfWindow =
           document.documentElement.scrollTop + window.innerHeight >
           document.documentElement.offsetHeight
-          // console.log(bottomOfWindow, window.innerHeight, document.documentElement.scrollTop, window.innerHeight+document.documentElement.scrollTop, document.documentElement.offsetHeight)
         
          if (bottomOfWindow) {
           state.pageNo += state.pageNo
@@ -70,12 +72,6 @@ export default new Vuex.Store({
            
         }
       }
-    }
-  },
-
-  getters: {
-    getItems (state) {
-      return state.items
     }
   },
 
@@ -110,6 +106,13 @@ export default new Vuex.Store({
         })
 
     },
+    getMovie ({ commit }) {
+      axios.get(`https://youtube.googleapis.com/youtube/v3/search?channelType=any&maxResults=1&q=${this.state.clickedMovie.title}&key=AIzaSyAG4NH0PoFLV4W569T_iqQQFKaLr1shzYE`)
+        .then(response => {
+          this.trailerId = response.data.items[0].id.videoId
+          commit('getMovie', this.trailerId)
+        })
+    }
   },
   modules: {
   }

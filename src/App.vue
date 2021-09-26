@@ -13,6 +13,8 @@
           </div>
           <router-view/>
         </div>
+        <router-link to="/movie"></router-link>
+
       </div>
     </div>
 

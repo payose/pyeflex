@@ -13,12 +13,12 @@
 </template>
 
 <script>
-// import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   props: ['movie'],
 
-  /* computed: {
+  computed: {
     ...mapState([
       'clickedMovie'
     ]),
@@ -29,9 +29,10 @@ export default {
 
   methods: {
     getMovie () {
+      this.$router.push('/movie')
       this.$store.state.clickedMovie = this.movie
       this.$store.dispatch('getMovie')
     }
-  } */
+  }
 }
 </script>
