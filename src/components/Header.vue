@@ -1,7 +1,7 @@
 <template>
   <nav id="flex-header" class="navbar pb-md-4 px-md-3 pt-sm-1">
     <div class="container-fluid align-items-end">
-      <a class="navbar-brand" href="#"><img src="./../assets/pyeflex.png" alt=""></a>
+      <a class="navbar-brand" to="/"><img src="./../assets/pyeflex.png" alt=""></a>
 
       <form @submit.prevent="searchMovies()" action="" class="d-none d-md-block">
         <input

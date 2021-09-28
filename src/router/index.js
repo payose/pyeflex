@@ -23,8 +23,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Filter.vue')
   },
   {
-    path: '/movie',
-    name: 'Movie',
+    path: '/About/:movieName',
+    name: 'About',
+    // component: About,
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+
     // component: Movie,
     meta: {
       title: "pyeflex Movies | movie"

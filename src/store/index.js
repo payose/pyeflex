@@ -58,15 +58,10 @@ export default new Vuex.Store({
         let bottomOfWindow =
           document.documentElement.scrollTop + window.innerHeight >
           document.documentElement.offsetHeight
-        
          if (bottomOfWindow) {
           state.pageNo += state.pageNo
-          console.log(state.pageNo)
           this.dispatch('discoverMovies')
-          console.log('dispatched...')
           setTimeout(() => {
-          console.log('dispatched...')
-            
           }, 3000);
           // bottomOfWindow=false
            

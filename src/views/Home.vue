@@ -1,16 +1,17 @@
 <template>
   <div class="home">
-    <!-- <Header/> -->
-    <TrendingMovies
-    />
+    <AppLayout>
+      <TrendingMovies
+      />
 
-    <DiscoverMovies
-    />
-
+      <DiscoverMovies
+      />
+    </AppLayout>
   </div>
 </template>
 
 <script>
+import AppLayout from '@/layouts/AppLayout'
 import  TrendingMovies from '@/components/TrendingMovies'
 import  DiscoverMovies from '@/components/DiscoverMovies'
 // @ is an alias to /src
@@ -18,6 +19,7 @@ import  DiscoverMovies from '@/components/DiscoverMovies'
 export default {
   name: 'Home',
   components: {
+    AppLayout,
     TrendingMovies,
     DiscoverMovies
   }
