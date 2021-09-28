@@ -14,6 +14,7 @@
       <p class="text-secondary text-truncate">{{ movie.title }}</p>
     </div> -->
   </div>
+
 </template>
 
 <script>
@@ -33,7 +34,6 @@ export default {
 
   methods: {
     getMovie () {
-      // this.$router.push({ path: `/movie/${this.movie.title}` })
       this.$router.push({ path: `/About/${this.movie.title}` })
       this.$store.state.clickedMovie = this.movie
       this.$store.dispatch('getMovie')

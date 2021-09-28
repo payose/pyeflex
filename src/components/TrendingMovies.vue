@@ -12,7 +12,7 @@
         :dots="false"
         :autoplayTimeout=4000
       >
-        <div v-for="(trendingMovie, index) in trendingMoviesList" :key="trendingMovie.id">
+        <div v-for="(trendingMovie, index) in trendingMoviesList" :key="trendingMovie.id" >
           <div v-b-toggle.sidebar-backdrop class="movie-link" @click="getTrendingMovie(index)">
             <img :src="'http://image.tmdb.org/t/p/w500/' + trendingMovie.poster_path" alt="Movie Poster" class="carousel-img">
           </div>
@@ -40,9 +40,16 @@ export default {
 
   methods: {
     getTrendingMovie (index) {
+      this.$router.push({ path: `/About/${this.trendingMoviesList[index].title}` })
       this.$store.state.clickedMovie = this.trendingMoviesList[index]
       this.$store.dispatch('getMovie')
     },
+
+  /*   getMovie () {
+      this.$router.push({ path: `/About/${this.movie.title}` })
+      this.$store.state.clickedMovie = this.movie
+      this.$store.dispatch('getMovie')
+    }, */
 
     getViewPort () {
       if (vw < 576) {
