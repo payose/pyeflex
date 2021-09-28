@@ -2,8 +2,8 @@
   <div>
     <AppLayout>
       <div class="d-flex justify-content-between">
-        <h2 class="ml-4 mb-5 text-secondary">filter for {{ $route.params.tabName}}</h2>
-        <b-icon icon="x-octagon-fill" style="width: 30px; height: 30px; cursor: pointer"
+        <h2 class="section-title mb-3 text-secondary">filter for {{ $route.params.tabName}}</h2>
+        <b-icon icon="arrow-left-circle-fill" style="width: 30px; height: 30px; cursor: pointer"
         class="mr-5 text-secondary svg" @click="back()">
         </b-icon>
       </div>
