@@ -30,3 +30,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+::-webkit-scrollbar{
+  width: 6px;
+}
+</style>

@@ -1,11 +1,11 @@
 <template>
   <div id="card" v-b-toggle.sidebar-backdrop>
     <div class="card-movie"  @click="getMovie()">
-      <div>
+      <div style="">
         <img :src="'http://image.tmdb.org/t/p/w500/' + movie.poster_path" 
         loading="lazy" 
         alt="Movie Poster" 
-        class="img-fluid"
+        class="img-fluid movie-poster"
         >
       </div>
       <p class="text-secondary text-truncate">{{ movie.title }}</p>
@@ -41,3 +41,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* .movie-poster{
+  min-height: 50vh;
+  width: 100%;
+  background-color: #333;
+} */
+
+</style>

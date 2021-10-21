@@ -14,7 +14,7 @@
       >
         <div v-for="(trendingMovie, index) in trendingMoviesList" :key="trendingMovie.id" >
           <div v-b-toggle.sidebar-backdrop class="movie-link" @click="getTrendingMovie(index)">
-            <img :src="'http://image.tmdb.org/t/p/w500/' + trendingMovie.poster_path" alt="Movie Poster" class="carousel-img">
+            <img :src="'http://image.tmdb.org/t/p/w500/' + trendingMovie.poster_path" alt="Movie Poster" class="carousel-img movie-poster">
           </div>
         </div>
       </carousel>

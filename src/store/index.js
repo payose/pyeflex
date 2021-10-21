@@ -102,7 +102,7 @@ export default new Vuex.Store({
 
     },
     getMovie ({ commit }) {
-      axios.get(`https://youtube.googleapis.com/youtube/v3/search?channelType=any&maxResults=1&q=${this.state.clickedMovie.title}&key=AIzaSyAG4NH0PoFLV4W569T_iqQQFKaLr1shzYE`)
+      axios.get(`https://youtube.googleapis.com/youtube/v3/search?channelType=any&maxResults=1&q=${this.state.clickedMovie.title}trailer&key=AIzaSyAG4NH0PoFLV4W569T_iqQQFKaLr1shzYE`)
         .then(response => {
           this.trailerId = response.data.items[0].id.videoId
           commit('getMovie', this.trailerId)
